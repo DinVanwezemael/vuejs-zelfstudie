@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+
+.color-red{
+    color: red;
+}
+
+.is-loading{
+    color: red;
+}
+
+</style>
+<body>
+
+    <div id="root">
+        
+        <h1>
+            {{ reversedMesage }}
+        </h1>
+
+        <h2>all tasks</h2>
+
+        <ul>
+            <li v-for="task in tasks" v-text="task.discription"></li>
+        </ul>
+
+
+        <h2>incomplete tasks</h2>
+
+        <ul>
+            <li v-for="task in incompleteTasks" v-if="!task.completed" v-text="task.discription"></li>
+        </ul>
+
+    </div>
+
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+    
+
+        var app = new Vue({
+
+            el: '#root',
+            
+
+            data: {
+                message : 'hello world',
+                tasks : [
+                    {discription: 'go to the store', completed: false},
+                    {discription: 'go to the ore', completed: true},
+                    {discription: 'goo the store', completed: false},
+                    {discription: 'go to the store', completed: false},
+                    {discription: 'go to thstore', completed: false},
+                    {discription: 'go to the sre', completed: true},
+                    {discription: 'go  the sre', completed: true},
+                ]
+            },
+
+            computed: {
+                reversedMesage(){
+                    return this.message.split('').reverse().join('');
+                },
+
+                incompleteTasks(){
+                    return this.tasks.filter(task => !task.completed);
+                }
+            }
+        });
+
+        
+        
+    </script>
+</body>
+</html>
