@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <title>Document</title>
+</head>
+<style>
+   html, body{
+       height: 100vh;
+   }
+
+   body{
+       display: flex;
+       align-items: center;
+       justify-content: center;
+   }
+
+   .tooltip{
+       background-color: black;
+       color: white;
+       padding: 10px;
+       border-radius: 1px;
+   }
+</style>
+<body>
+
+    <div id="root">
+
+        <p>
+            hallo daar
+
+            <span data-tooltip="i am tooltip" data-tooltip-placement="right">hover</span>
+        </p>
+
+    </div>
+
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+
+    <script>
+
+
+new Vue({
+    el: '#root',
+
+    mounted() {
+        document.querySelectorAll('[data-tooltip]').forEach(elem => {
+            Popper.createPopper(elem, {
+                placement: elem.dataset.tooltipPlacement || 'top',
+                title: elem.dataset.tooltip
+            });
+        });
+    },
+});
+
+
+    </script>
+
+   <!--  <script src="js/44.js"></script> -->
+</body>
+</html>
